@@ -10,28 +10,27 @@ var myIcon = L.icon({
     iconSize: [25, 41],
     iconAnchor: [12.5, 41],
     popupAnchor: [0, -41]
-
 });
 
 
 
 class App extends Component {
-
   state = {
     location :{
   lat: 11.825138,
   lng: 42.590275,
   },
   zoom: 8,
+  haveUsersLocation: false,
 }
-
 componentDidMount(){
   navigator.geolocation.getCurrentPosition((position) => {
     this.setState({
       location : {
         lat: position.coords.latitude ,
         lng : position.coords.longitude
-      }
+      },
+      haveUsersLocation: true
     })
   });
 }
@@ -41,21 +40,20 @@ componentDidMount(){
 
 render(){
 const position = [this.state.location.lat, this.state.location.lng];
-
   return (
-
     <Map className="map" center={position} zoom={this.state.zoom}>
       <TileLayer
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker
-        position={position}
-        icon={myIcon}>
-        <Popup>
-          ur a <br/> lame
-        </Popup>
-      </Marker>
+      this.state.haveUsersLocation ?
+        <Marker
+          position={position}
+          icon={myIcon}>
+          <Popup>
+            ur a <br/> lame
+          </Popup>
+        </Marker> : ''
     </Map>
   );
 }
