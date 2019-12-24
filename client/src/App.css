@@ -12,3 +12,10 @@ body{
 .map {
   height: 100%;
 }
+
+.message-form{
+  position: absolute;
+  top: 0;
+  right: 0;
+
+}

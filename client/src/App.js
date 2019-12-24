@@ -1,6 +1,6 @@
 import React , {Component} from 'react';
 import './App.css';
-//import { Card, Button, CardTitle, CardText, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Card, Button, CardTitle, CardText } from 'reactstrap';
 import L from 'leaflet';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 
@@ -41,8 +41,6 @@ React Notes : https://reactjs.org/docs/rendering-elements.html
   the network request.
 */
 
-
-
 componentDidMount(){
   navigator.geolocation.getCurrentPosition((position) => {
     this.setState({
@@ -76,6 +74,7 @@ componentDidMount(){
 render(){
 const position = [this.state.location.lat, this.state.location.lng];
   return (
+    <div className="map" >
     <Map className="map" center={position} zoom={this.state.zoom}>
       <TileLayer
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -90,6 +89,12 @@ const position = [this.state.location.lat, this.state.location.lng];
           </Popup>
         </Marker> : ''
     </Map>
+    <Card body className = "message-form">
+      <CardTitle> Title </CardTitle>
+      <CardText> Text McText </CardText>
+      <Button> Go Somewhere </Button>
+    </Card>
+    </div>
   );
 }
 }
