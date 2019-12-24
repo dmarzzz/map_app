@@ -1,6 +1,6 @@
 import React , {Component} from 'react';
 import './App.css';
-import { Card, Button, CardTitle, CardText, Form, FormGroup, Label, Input } from 'reactstrap';
+//import { Card, Button, CardTitle, CardText, Form, FormGroup, Label, Input } from 'reactstrap';
 import L from 'leaflet';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 
@@ -23,6 +23,26 @@ class App extends Component {
   zoom: 8,
   haveUsersLocation: false,
 }
+
+/*
+React Notes : https://reactjs.org/docs/rendering-elements.html
+  These methods are called in the following order when an instance
+   of a component is being created and inserted into the DOM:
+
+  constructor()
+  static getDerivedStateFromProps()
+  render()
+  componentDidMount()
+
+  componentDidMount() is invoked immediately after a component
+  is mounted (inserted into the tree). Initialization that
+  requires DOM nodes should go here. If you need to load data
+  from a remote endpoint, this is a good place to instantiate
+  the network request.
+*/
+
+
+
 componentDidMount(){
   navigator.geolocation.getCurrentPosition((position) => {
     this.setState({
@@ -30,12 +50,27 @@ componentDidMount(){
         lat: position.coords.latitude ,
         lng : position.coords.longitude
       },
-      haveUsersLocation: true
-    })
+      haveUsersLocation: true,
+      zoom : 13
+    });
+  }, () => {
+//If browser does not automaticaly provide location data,
+// get long and lat from API using users IP Address
+    console.log("no location data");
+    fetch('https://ipapi.co/json')
+      .then(res => res.json())
+      .then(location => {
+        this.setState({
+          location : {
+            lat: location.latitude ,
+            lng : location.longitude
+          },
+          haveUsersLocation: true,
+          zoom : 13
+        });
+      })
   });
 }
-
-
 
 
 render(){
