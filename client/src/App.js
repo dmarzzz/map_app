@@ -18,16 +18,29 @@ var myIcon = L.icon({
 class App extends Component {
 
   state = {
+    location :{
   lat: 11.825138,
   lng: 42.590275,
+  },
   zoom: 8,
+}
+
+componentDidMount(){
+  navigator.geolocation.getCurrentPosition((position) => {
+    this.setState({
+      location : {
+        lat: position.coords.latitude ,
+        lng : position.coords.longitude
+      }
+    })
+  });
 }
 
 
 
 
 render(){
-const position = [this.state.lat, this.state.lng];
+const position = [this.state.location.lat, this.state.location.lng];
 
   return (
 
@@ -36,10 +49,11 @@ const position = [this.state.lat, this.state.lng];
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={position}
-      icon={myIcon}>
+      <Marker
+        position={position}
+        icon={myIcon}>
         <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
+          ur a <br/> lame
         </Popup>
       </Marker>
     </Map>
