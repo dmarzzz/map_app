@@ -80,6 +80,7 @@ const position = [this.state.location.lat, this.state.location.lng];
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+      {
       this.state.haveUsersLocation ?
         <Marker
           position={position}
@@ -88,6 +89,7 @@ const position = [this.state.location.lat, this.state.location.lng];
             ur a <br/> lame
           </Popup>
         </Marker> : ''
+      }
     </Map>
     <Card body className = "message-form">
       <CardTitle> Title </CardTitle>

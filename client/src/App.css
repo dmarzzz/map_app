@@ -13,9 +13,10 @@ body{
   height: 100%;
 }
 
-.message-form{
+.message-form {
+  z-index: 999;
   position: absolute;
-  top: 0;
-  right: 0;
-
+  top: 5px;
+  right: 5px;
+  max-width: 300px;
 }
