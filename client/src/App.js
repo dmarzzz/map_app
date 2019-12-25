@@ -1,8 +1,8 @@
 import React , {Component} from 'react';
 import './App.css';
-import { Card, Button, CardTitle, CardText } from 'reactstrap';
+import { Card, CardTitle , CardText , Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import L from 'leaflet';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
+import { Map, TileLayer, Marker, Popup  } from 'react-leaflet'
 
 
 var myIcon = L.icon({
@@ -92,9 +92,15 @@ const position = [this.state.location.lat, this.state.location.lng];
       }
     </Map>
     <Card body className = "message-form">
-      <CardTitle> Title </CardTitle>
-      <CardText> Text McText </CardText>
-      <Button> Go Somewhere </Button>
+      <CardTitle> Welcome to DropNet (?) </CardTitle>
+      <CardText> Drop some pics playa! </CardText>
+      <Form>
+     <FormGroup>
+       <Label for="exampleEmail">PicName</Label>
+       <Input type="email" name="email" id="exampleEmail" placeholder="Ur pic here" />
+     </FormGroup>
+     </Form>
+      <Button> Like it's hot yo! </Button>
     </Card>
     </div>
   );
