@@ -22,6 +22,10 @@ class App extends Component {
   },
   zoom: 1,
   haveUsersLocation: false,
+  userMsg : {
+    name:'',
+    msg:''
+  }
 }
 
 /*
@@ -79,40 +83,50 @@ render(){
 const position = [this.state.location.lat, this.state.location.lng];
   return (
     <div className="map" >
-    <Map className="map" center={position} zoom={this.state.zoom}>
-      <TileLayer
+      <Map className="map" center={position} zoom={this.state.zoom}>
+        <TileLayer
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      {
-      this.state.haveUsersLocation ?
+        />
+        {
+        this.state.haveUsersLocation ?
         <Marker
-          position={position}
-          icon={myIcon}>
-          <Popup>
-            ur a <br/> lame
-          </Popup>
+        position={position}
+        icon={myIcon}>
+        <Popup>
+        ur a <br/> lame
+        </Popup>
         </Marker> : ''
-      }
-    </Map>
+        }
+      </Map>
     <Card body className = "message-form">
       <CardTitle> Welcome to TripNet(?) </CardTitle>
       <CardText> Drop some trips playa! </CardText>
       <Form>
+
      <FormGroup>
        <Label for="exampleEmail">Trip Name</Label>
-       <Input type="email" name="email" id="exampleEmail" placeholder="Ur pic here" />
+       <Input
+          type="email"
+          name="email"
+          id="exampleEmail"
+          placeholder="Ur pic here" />
      </FormGroup>
+
      <FormGroup>
        <Label for="exampleFile">Pics</Label>
-       <Input type="file" name="file" id="exampleFile" />
+       <Input
+          type="file"
+          name="file"
+          id="exampleFile" />
+
        <FormText color="muted">
          This is some placeholder block-level help text for the above input.
          It's a bit lighter and easily wraps to a new line.
        </FormText>
      </FormGroup>
      </Form>
-      <Button> Like it's hot yo! </Button>
+      <Button type="submit" color="info" disabled={!this.state.haveUsersLocation}> Like it's hot yo! </Button>
     </Card>
     </div>
   );
