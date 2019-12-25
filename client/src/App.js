@@ -1,6 +1,6 @@
 import React , {Component} from 'react';
 import './App.css';
-import { Card, CardTitle , CardText , Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Card, CardTitle , FormText,CardText , Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import L from 'leaflet';
 import { Map, TileLayer, Marker, Popup  } from 'react-leaflet'
 
@@ -17,10 +17,10 @@ var myIcon = L.icon({
 class App extends Component {
   state = {
     location :{
-  lat: 11.825138,
-  lng: 42.590275,
+  lat: 0,
+  lng: 0,
   },
-  zoom: 8,
+  zoom: 1,
   haveUsersLocation: false,
 }
 
@@ -49,7 +49,7 @@ componentDidMount(){
         lng : position.coords.longitude
       },
       haveUsersLocation: true,
-      zoom : 13
+      zoom : 4
     });
   }, () => {
 //If browser does not automaticaly provide location data,
@@ -92,12 +92,20 @@ const position = [this.state.location.lat, this.state.location.lng];
       }
     </Map>
     <Card body className = "message-form">
-      <CardTitle> Welcome to DropNet (?) </CardTitle>
-      <CardText> Drop some pics playa! </CardText>
+      <CardTitle> Welcome to TripNet(?) </CardTitle>
+      <CardText> Drop some trips playa! </CardText>
       <Form>
      <FormGroup>
-       <Label for="exampleEmail">PicName</Label>
+       <Label for="exampleEmail">Trip Name</Label>
        <Input type="email" name="email" id="exampleEmail" placeholder="Ur pic here" />
+     </FormGroup>
+     <FormGroup>
+       <Label for="exampleFile">Pics</Label>
+       <Input type="file" name="file" id="exampleFile" />
+       <FormText color="muted">
+         This is some placeholder block-level help text for the above input.
+         It's a bit lighter and easily wraps to a new line.
+       </FormText>
      </FormGroup>
      </Form>
       <Button> Like it's hot yo! </Button>
