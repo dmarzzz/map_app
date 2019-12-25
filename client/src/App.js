@@ -74,7 +74,7 @@ formSubmitted = (event) => {
   event.preventDefault();
 }
 
-
+//called 3rd in React
 render(){
 const position = [this.state.location.lat, this.state.location.lng];
   return (
