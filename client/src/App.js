@@ -70,6 +70,10 @@ componentDidMount(){
   });
 }
 
+formSubmitted = (event) => {
+  event.preventDefault();
+}
+
 
 render(){
 const position = [this.state.location.lat, this.state.location.lng];
