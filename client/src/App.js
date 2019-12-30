@@ -1,8 +1,10 @@
 import React , {Component} from 'react';
 import './App.css';
-import { Card, CardTitle , FormText,CardText , Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import { Card, CardTitle  , Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import L from 'leaflet';
 import { Map, TileLayer, Marker, Popup  } from 'react-leaflet'
+import Navbar from 'react-bootstrap/Navbar';
+
 
 
 var myIcon = L.icon({
@@ -56,8 +58,8 @@ componentDidMount(){
       zoom : 4
     });
   }, () => {
-//If browser does not automaticaly provide location data,
-// get long and lat from API using users IP Address
+    //If browser does not automaticaly provide location data,
+    // get long and lat from API using users IP Address
     console.log("no location data");
     fetch('https://ipapi.co/json')
       .then(res => res.json())
@@ -80,9 +82,13 @@ formSubmitted = (event) => {
 
 //called 3rd in React
 render(){
-const position = [this.state.location.lat, this.state.location.lng];
+let position = [this.state.location.lat, this.state.location.lng];
   return (
+
     <div className="map" >
+    <Navbar bg="dark" variant="dark">
+        <Navbar.Brand>TripNet(?)</Navbar.Brand>
+      </Navbar>
       <Map className="map" center={position} zoom={this.state.zoom}>
         <TileLayer
         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -91,43 +97,29 @@ const position = [this.state.location.lat, this.state.location.lng];
         {
         this.state.haveUsersLocation ?
         <Marker
-        position={position}
-        icon={myIcon}>
-        <Popup>
-        ur a <br/> lame
-        </Popup>
+          position={position}
+          icon={myIcon}>
+          <Popup>
+            ur a <br/> lame
+          </Popup>
         </Marker> : ''
         }
       </Map>
-    <Card body className = "message-form">
-      <CardTitle> Welcome to TripNet(?) </CardTitle>
-      <CardText> Drop some trips playa! </CardText>
+      <Card body className = "message-form">
+        <CardTitle> Welcome to TripNet(?) </CardTitle>
       <Form>
 
-     <FormGroup>
-       <Label for="exampleEmail">Trip Name</Label>
-       <Input
-          type="email"
-          name="email"
-          id="exampleEmail"
-          placeholder="Ur pic here" />
-     </FormGroup>
-
-     <FormGroup>
-       <Label for="exampleFile">Pics</Label>
-       <Input
-          type="file"
-          name="file"
-          id="exampleFile" />
-
-       <FormText color="muted">
-         This is some placeholder block-level help text for the above input.
-         It's a bit lighter and easily wraps to a new line.
-       </FormText>
-     </FormGroup>
-     </Form>
-      <Button type="submit" color="info" disabled={!this.state.haveUsersLocation}> Like it's hot yo! </Button>
-    </Card>
+        <FormGroup>
+          <Label for="tripName">Trip Name</Label>
+          <Input
+            type="text"
+            name="tripName"
+            id="tripName"
+            placeholder="Enter Trip ID" />
+          </FormGroup>
+      </Form>
+      <Button type="submit" color="info" disabled={!this.state.haveUsersLocation}> Let's Go! </Button>
+      </Card>
     </div>
   );
 }
