@@ -105,7 +105,8 @@ let position = [this.state.location.lat, this.state.location.lng];
         </Marker> : ''
         }
       </Map>
-      <Card body className = "message-form">
+
+      <Card body className = "message-form" inverse style={{ backgroundColor: '#353A40', borderColor: '#353A40' }}>
         <CardTitle> Welcome to TripNet(?) </CardTitle>
       <Form>
 
@@ -119,7 +120,17 @@ let position = [this.state.location.lat, this.state.location.lng];
           </FormGroup>
       </Form>
       <Button type="submit" color="info" disabled={!this.state.haveUsersLocation}> Let's Go! </Button>
+
+
       </Card>
+
+
+
+
+
+
+
+
     </div>
   );
 }
