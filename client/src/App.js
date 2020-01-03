@@ -66,6 +66,10 @@ componentDidMount(){
             lat: location.latitude ,
             lng : location.longitude
           },
+          userMessage:{
+            name:'',
+            message:''
+          },
           haveUsersLocation: true,
           zoom : 13
         });
@@ -75,7 +79,19 @@ componentDidMount(){
 
 formSubmitted = (event) => {
   event.preventDefault();
+  console.log(this.state.userMessage);
 }
+
+valueChanged = (event) => {
+  const{ name , value } = event.target;
+  this.setState((prevState) => ({
+    userMessage: {
+    ...prevState.userMessage,
+    [name ]:value
+   }
+ }))
+}
+
 
 //called 3rd in React
 render(){
@@ -105,11 +121,12 @@ let position = [this.state.location.lat, this.state.location.lng];
 
       <Card body className = "message-form" inverse style={{ backgroundColor: '#353A40', borderColor: '#353A40' }}>
         <CardTitle> Welcome to TripNet(?) </CardTitle>
-      <Form>
+      <Form onSubmit={this.formSubmitted}>
 
         <FormGroup>
           <Label for="tripName">Trip Name</Label>
           <Input
+            onChange={this.valueChanged}
             type="text"
             name="tripName"
             id="tripName"
